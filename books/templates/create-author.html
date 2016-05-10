@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create a new author</h2>
+    
+    <form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="error">
+            {% for error in form.non_field_errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <label>{{ form.name.label }}</label>
+    {{ form.name }}
+    {{ form.n.help_text }}
+
+    {% if form.name.errors %}
+        <div class="error">
+            {% for error in form.name.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <input type="submit" class="button" value="Create Author">
+</form>
+{% endblock %}
